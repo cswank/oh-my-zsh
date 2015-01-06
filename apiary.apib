@@ -1,0 +1,117 @@
+FORMAT: 1A
+
+# NLVX
+???
+
+# Group Custom Fields
+
+## Custom Fields Collection [/v1/custom_fields]
+### List all Custom Fields [GET]
++ Response 200 (application/json)
+
+        {
+          "custom_fields": [
+          {
+            "id": 792,
+            "name": "age",
+            "type": "number"
+          },
+          {
+            "id": 793,
+            "name": "weight",
+            "type": "number"
+          }]
+        }
+
+
+### Create a Custom Field [POST]
++ Request (application/json)
+
+        {"name": "birthday", "type": "date"}
+
++ Response 201 (application/json)
+
+        {"id":802,"name":"birthday","type":"date"}
+
+## Custom Field [/v1/custom_fields/{id}]
+A single Custom Field object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Custom Field to perform action with. Has example value.
+
+### Retrieve a Custom Field [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {"id":802,"name":"birthday","type":"date"}
+
+### Remove a Custom Field [DELETE]
++ Response 204
+
+# Group Contacts
+
+## Contacts Collection [/v1/contacts]
+### List all Contacts [GET]
++ Response 200 (application/json)
+
+        {"contacts[{
+          "id": 333,
+          "email": "a@b.com",
+          "first_name": "Hank",
+          "last_name": "Solo",
+          "custom_fields": {
+            "age": 34
+          },
+        {
+          "id": 334,
+          "email": "c@d.com",
+          "first_name": "Joe",
+          "last_name": "Skywalker",
+          "custom_fields": {
+            "age": 30
+          }
+        }]
+
+
+### Create a Contact [POST]
++ Request (application/json)
+
+        {"email": "a@b.com", "first_name": "Hank", "last_name": "Solo", "custom_fields": {"age": 33}}
+
++ Response 201 (application/json)
+
+        {
+            "id": 1,
+            "email": "a@b.com",
+            "first_name": "Hank",
+            "last_name": "Solo",
+            "custom_fields": {
+                "age": 33
+            }
+        }        
+
+## Contact [/v1/contacts/{id}]
+A single Contact object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Contact to perform action with. Has example value.
+
+### Retrieve a Contact [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "email": "a@b.com",
+                "first_name": "Hank",
+                "last_name": "Solo",
+                "custom_fields": {
+                    "age": 33
+                }
+            }    
+
+### Remove a Contact [DELETE]
++ Response 204
+
